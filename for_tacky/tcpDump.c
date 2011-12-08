@@ -95,8 +95,6 @@ void print_ethaddr(u_char *args, const struct pcap_pkthdr *header, const u_char 
 	int i;
 	ipheaderlen= ((ipHeader->ip_hl))*4;
     if(ipheaderlen<20) return;
-    //fittle icp protocol
-    //if(ipHeader->ip_p!=17) return;
     
     tcp_h= (struct struct_tcp *)(packet+SIZE_ETHERNET+ipheaderlen);
     
@@ -115,11 +113,7 @@ void print_ethaddr(u_char *args, const struct pcap_pkthdr *header, const u_char 
 			printf(":");
 		}
 	}
-    //version= (ipHeader->ip_vpVerHLen)>>4;
-    //ttl=(ipHeader->ip_ttl)>>8;
-    //protocol = ((ipHeader->ip_ttl)<<8)>>8;
     printIP(ipHeader->ip_src);printIP(ipHeader->ip_dst); printf("\n");
-    //printf("%s %s\n",inet_ntoa(ipHeader->ip_src),inet_ntoa(ipHeader->ip_dst));
 	printf("\tEtherType:%3d ver:%2d hl:%3d, id= %8d len=%6d ttl:%2d \n\tProtocol:%d\n   ",eh->ether_type,ipHeader->ip_v,ipheaderlen,ipHeader->ip_id,(ipHeader->ip_len),ipHeader->ip_ttl,ipHeader->ip_p);
     
     printf("\tTCP: srPort=%d dsPort=%d %X\n",ntohs(tcp_h->tcp_srp),ntohs(tcp_h->tcp_dsp),tcp_h->tcp_ackFlag);
