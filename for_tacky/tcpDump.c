@@ -36,6 +36,7 @@ struct struct_tcp{
     uint8_t        tcp_ackFlag;
     uint8_t        tcp_wSize;
 };
+void print_ethaddr(u_char *, const struct pcap_pkthdr *, const u_char *packet);
 main(int argc, char *argv[]) {
 	pcap_t *pd;
 	int snaplen = 64;
@@ -44,7 +45,7 @@ main(int argc, char *argv[]) {
     char ebuf[PCAP_ERRBUF_SIZE];
     bpf_u_int32 localnet, netmask;
     pcap_handler callback;
-    void print_ethaddr(u_char *, const struct pcap_pkthdr *, const u_char *packet);
+    
     struct bpf_program fp;
     
 	//mac縺ｪ繧影n0縺ｨ縺丘buntu縺ｪ繧影th1縺ｨ縺
@@ -64,10 +65,7 @@ main(int argc, char *argv[]) {
     { 
         fprintf(stderr,"Error setting filter\n"); exit(1); 
     }
-    
-    
-    callback = print_ethaddr;
-    if (pcap_loop(pd, -1, callback, NULL) < 0) {
+    if (pcap_loop(pd, -1, print_ethaddr, NULL) < 0) {
 		exit(3);
     }
 	pcap_close(pd);
