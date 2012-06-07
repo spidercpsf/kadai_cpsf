@@ -44,7 +44,6 @@ main(int argc, char *argv[]) {
     int timeout = 1000;
     char ebuf[PCAP_ERRBUF_SIZE];
     bpf_u_int32 localnet, netmask;
-    pcap_handler callback;
     
     struct bpf_program fp;
     
