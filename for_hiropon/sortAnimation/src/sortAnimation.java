@@ -19,7 +19,7 @@ public class sortAnimation {
 		sortAgorithm sA = new sortAgorithm(aF.getListenr());
 		
 		
-		array=sA.sort(array,0,array.length,200);
+		array=sA.sort(array,0,array.length,500);
 		for(int i=0;i< array.length;i++){
 			System.out.print(array[i]+" ");
 		}

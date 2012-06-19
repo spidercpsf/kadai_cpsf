@@ -4,9 +4,6 @@ import java.util.EventObject;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
-    
-
-	
 
 public class sortAgorithm extends sortable{
 	private SortEventListener sEL;
@@ -18,6 +15,7 @@ public class sortAgorithm extends sortable{
 		sEL.myEventOccurred(new SortEvent(sA));
 	}
 	@Override
+	public
 	int[] sort(int[] array,int begin,int length,int sleepTime) throws InterruptedException, IOException {
 		if(array.length>1){
 			Thread.sleep(sleepTime);
